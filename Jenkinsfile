@@ -23,7 +23,7 @@ pipeline {
                 scannerHome = tool 'SonarScanner 7.0.2';
             }
             steps{
-                withSonarQubeEnv(Sonar){
+                withSonarQubeEnv('Sonar'){
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
