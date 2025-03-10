@@ -22,10 +22,9 @@ pipeline {
             environment {
                 scannerHome = tool 'SonarScanner 7.0.2';
             }
-            steps{
-                withSonarQubeEnv('Sonar'){
-                    sh "${scannerHome}/bin/sonar-scanner -D sonar.projectName=wonderlust -D sonar.projectKey=squ_6e2c2f732aa7d0936bbf473ec983626aeace08e5 -D sonar.sources=."
-                }
+
+            script {
+                sonar_analysis('Sonar','wonderlust','squ_6e2c2f732aa7d0936bbf473ec983626aeace08e5')
             }
         }
 
