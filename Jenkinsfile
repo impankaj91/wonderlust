@@ -23,13 +23,12 @@ pipeline {
                 scannerHome = tool 'SonarScanner 7.0.2';
             }
 
-            script {
-                sonar_analysis('Sonar','wonderlust','squ_6e2c2f732aa7d0936bbf473ec983626aeace08e5')
+            steps {
+                script {
+                    sonar_analysis('Sonar','wonderlust','squ_6e2c2f732aa7d0936bbf473ec983626aeace08e5')
+                }
             }
         }
-
-        
-
         stage('Build(Docker)') {
             steps{
                 dir('frontend') {
