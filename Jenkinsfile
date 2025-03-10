@@ -18,6 +18,17 @@ pipeline {
             }
         }
 
+        stage('SonarQube analysis'){
+            def scannerHome = tool 'SonarScanner 7.0.2';
+            steps{
+                withSonarQubeEnv(Sonar){
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
+
+        
+
         stage('Build(Docker)') {
             steps{
                 dir('frontend') {
