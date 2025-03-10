@@ -24,7 +24,7 @@ pipeline {
             }
             steps{
                 withSonarQubeEnv('Sonar'){
-                    sh "${scannerHome}/bin/sonar-scanner -D sonar.projectKey=wonderlust -D sonar.sources=."
+                    sh "${scannerHome}/bin/sonar-scanner -D sonar.projectName=wonderlust -D sonar.projectKey=squ_6e2c2f732aa7d0936bbf473ec983626aeace08e5 -D sonar.sources=."
                 }
             }
         }
