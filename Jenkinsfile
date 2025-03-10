@@ -17,5 +17,20 @@ pipeline {
                 }
             }
         }
+
+        stage('Build(Docker)') {
+            steps{
+                dir('frontend') {
+                script{
+                    docker_build('wonderlust-frontend','latest')
+                }
+                }
+                dir('backend') {
+                script{
+                    docker_build('wonderlust-backend','latest')
+                }
+                }
+            }
+        }
     }
 }
