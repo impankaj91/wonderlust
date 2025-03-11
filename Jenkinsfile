@@ -10,6 +10,13 @@ pipeline {
             }
         }
         }
+
+        stage('clean workspace'){
+            steps{
+                cleanWs()
+            }
+        }
+
         stage('checkout code'){
             steps{
                 script {
