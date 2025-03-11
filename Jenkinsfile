@@ -68,11 +68,23 @@ pipeline {
             }
         }
 
+        stage('Docker Tag Latest') {
+            steps {
+                sh """
+
+                docker tag wonderlust-frontend:${BUILD_NUMBER} wonderlust-frontend:latest
+                docker tag wonderlust-backend:${BUILD_NUMBER} wonderlust-backend:latest 
+
+                """
+            }
+
         stage('Docker Push') {
             steps {
                 script {
                     docker_push('DockerHub','wonderlust-frontend',"${BUILD_NUMBER}")
                     docker_push('DockerHub','wonderlust-backend',"${BUILD_NUMBER}")
+                    docker_push('DockerHub','wonderlust-frontend',"latest")
+                    docker_push('DockerHub','wonderlust-backend',"latest")
                 }
             }
         }
