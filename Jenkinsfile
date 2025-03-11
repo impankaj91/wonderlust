@@ -18,6 +18,14 @@ pipeline {
             }
         }
 
+        stage('OWASP Dependency Checks') {
+            steps {
+                script {
+                    owasp_dependency_check()
+                }
+            }
+        }
+
         stage('SonarQube analysis'){
             environment {
                 scannerHome = tool 'SonarScanner 7.0.2';
@@ -29,6 +37,7 @@ pipeline {
                 }
             }
         }
+
         stage('Build(Docker)') {
             steps{
                 dir('frontend') {
