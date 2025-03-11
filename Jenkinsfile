@@ -90,4 +90,10 @@ pipeline {
             }
         }
     }
+
+    post{
+        success {
+            build(job: 'wanderlust-cd')
+        }
+    }
 }
