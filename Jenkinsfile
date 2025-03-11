@@ -77,6 +77,7 @@ pipeline {
 
                 """
             }
+        }
 
         stage('Docker Push') {
             steps {
