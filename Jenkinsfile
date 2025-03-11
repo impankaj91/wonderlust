@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('File Scna') {
+        stage('File Scan') {
             steps {
                 script {
                     trivy()
