@@ -18,6 +18,14 @@ pipeline {
             }
         }
 
+        stage('File Scna') {
+            steps {
+                script {
+                    trivy()
+                }
+            }
+        }
+
         stage('OWASP Dependency Checks') {
             steps {
                 script {
@@ -42,12 +50,12 @@ pipeline {
             steps{
                 dir('frontend') {
                 script{
-                    docker_build('wonderlust-frontend','latest')
+                    docker_build('wonderlust-frontend',"${BUILD_NUMBER}")
                 }
                 }
                 dir('backend') {
                 script{
-                    docker_build('wonderlust-backend','latest')
+                    docker_build('wonderlust-backend',"${BUILD_NUMBER}")
                 }
                 }
             }
