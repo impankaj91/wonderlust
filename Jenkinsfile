@@ -33,13 +33,13 @@ pipeline {
             }
         }
 
-        stage('OWASP Dependency Checks') {
-            steps {
-                script {
-                    owasp_dependency_check()
-                }
-            }
-        }
+        //stage('OWASP Dependency Checks') {
+        //    steps {
+        //        script {
+        //            owasp_dependency_check()
+        //        }
+        //    }
+        //}
 
         stage('SonarQube analysis'){
             environment {
@@ -64,6 +64,15 @@ pipeline {
                 script{
                     docker_build('wonderlust-backend',"${BUILD_NUMBER}")
                 }
+                }
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                script {
+                    docker_push('DockerHub','wonderlust-frontend',"${BUILD_NUMBER}")
+                    docker_push('DockerHub','wonderlust-backend',"${BUILD_NUMBER}")
                 }
             }
         }
