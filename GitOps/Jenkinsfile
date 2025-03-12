@@ -36,6 +36,25 @@ pipeline {
             }
         }
 
+        stage('Push Manifests') {
+            steps {
+            withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+            sh """
+            
+            git status
+
+            git add .
+
+            git commit -m 'Tag Repaced with ${params.docker_image_tag}'
+
+            git push https://github.com/impankaj91/wonderlust.git main
+            
+            
+            """
+            }
+            }
+        }
+
     }
 
 }
