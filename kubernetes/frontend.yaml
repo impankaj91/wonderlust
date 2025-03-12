@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: kakashi0091/wonderlust-frontend:40
+          image: kakashi0091/wonderlust-frontend:41
           ports:
             - containerPort: 5173
 ---
