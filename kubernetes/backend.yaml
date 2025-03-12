@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: kakashi0091/wonderlust-backend:39
+          image: kakashi0091/wonderlust-backend:40
           ports:
             - containerPort: 8080
 ---
