@@ -93,7 +93,7 @@ pipeline {
 
     post{
         success {
-            build(job: 'wanderlust-cd')
+            build(job: 'wanderlust-cd',parameters: [string(name: 'docker_image_tag', value: "${BUILD_NUMBER}")])
         }
     }
 }
