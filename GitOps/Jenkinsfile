@@ -19,11 +19,11 @@ pipeline {
             }
         }
 
-        stage('Verified the Image Tag'){
-            steps{
-               sh "We are deploying the Version ${params.docker_image_tag}" 
-            }
-        }
+        //stage('Verified the Image Tag'){
+        //    steps{
+        //       sh "${params.docker_image_tag}" 
+        //    }
+        //}
 
         stage('Implement Build Tag in Manifest'){
             steps {
