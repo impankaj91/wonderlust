@@ -27,9 +27,11 @@ pipeline {
 
         stage('Implement Build Tag in Manifest'){
             steps {
-                dir('kubernetes') {
+                script {
+                   dir('kubernetes') {
                    sh "sed -i -e s/wonderlust-frontend.*/wonderlust-frontend:${params.docker_image_tag}/g frontend.yaml"
                    sh "sed -i -e s/wonderlust-backend.*/wonderlust-backend:${params.docker_image_tag}/g backend.yaml" 
+                }
                 }
             }
         }
