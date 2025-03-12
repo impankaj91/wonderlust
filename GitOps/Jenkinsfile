@@ -4,11 +4,36 @@ pipeline {
     agent{ label 'linux'}
 
     stages {
-        stage('Hello') {
+        
+        stage('Clean Workspace') {
             steps {
-                echo "Hello World ${params.docker_image_tag}"
+                cleanWs()
             }
         }
+
+        stage('Checkout Code') {
+            steps{
+                script {
+                    checkout_code('https://github.com/impankaj91/wonderlust.git','main')
+                }
+            }
+        }
+
+        stage('Verified the Image Tag'){
+            steps{
+               sh "We are deploying the Version ${params.docker_image_tag}" 
+            }
+        }
+
+        stage('Implement Build Tag in Manifest'){
+            steps {
+                dir('kubernetes') {
+                   sh "sed -i -e s/wonderlust-frontend.*/wonderlust-frontend:${params.docker_image_tag}/g frontend.yaml"
+                   sh "sed -i -e s/wonderlust-backend.*/wonderlust-backend:${params.docker_image_tag}/g backend.yaml" 
+                }
+            }
+        }
+
     }
 
 }
